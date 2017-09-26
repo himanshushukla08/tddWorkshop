@@ -93,24 +93,7 @@ public class SampleTennisGameEasy implements ISampleTennisGame
         }
         return score;
     }
-    
-    public void SetP1Score(int number){
-        
-        for (int i = 0; i < number; i++)
-        {
-            playerOneScore();
-        }
-            
-    }
-    
-    public void SetP2Score(int number){
-        
-        for (int i = 0; i < number; i++)
-        {
-            playerTwoScore();
-        }
-            
-    }
+
     
     public void playerOneScore(){
         playerOnePoint++;

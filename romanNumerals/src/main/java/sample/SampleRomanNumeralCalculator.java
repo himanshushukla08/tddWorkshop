@@ -22,6 +22,7 @@ public class SampleRomanNumeralCalculator {
         if(total == 4) return "IV";
         if(total == 5) return "V";
         if(total == 9) return "IX";
+        if(total == 10) return "X";
         return numeralOne + numeralTwo;
     }
 

@@ -22,7 +22,7 @@ public class SampleTennisGameEasy implements ISampleTennisGame
         }
         if (playerOnePoint == playerTwoPoint && playerOnePoint >=3)
             score = "Deuce";
-        
+
         if (playerOnePoint > 0 && playerTwoPoint ==0)
         {
             playerOneResponse = lookupBallOneThroughThree(playerOnePoint, playerOneResponse);
@@ -35,20 +35,15 @@ public class SampleTennisGameEasy implements ISampleTennisGame
             playerOneResponse = "Love";
             score = playerOneResponse + "-" + playerTwoResponse;
         }
-        
-        if (playerOnePoint > playerTwoPoint && playerOnePoint < 4)
-        {
-            playerOneResponse = lookupBallOneThroughThree(playerOnePoint, playerOneResponse);
-            playerTwoResponse = lookupBallOneThroughThree(playerTwoPoint, playerTwoResponse);
-            score = playerOneResponse + "-" + playerTwoResponse;
-        }
-        if (playerTwoPoint > playerOnePoint && playerTwoPoint < 4)
+
+        if ((playerOnePoint > playerTwoPoint && playerOnePoint < 4)||
+                (playerTwoPoint > playerOnePoint && playerTwoPoint < 4))
         {
             playerTwoResponse = lookupBallOneThroughThree(playerTwoPoint, playerTwoResponse);
             playerOneResponse = lookupBallOneThroughThree(playerOnePoint, playerOneResponse);
             score = playerOneResponse + "-" + playerTwoResponse;
         }
-        
+
         if (playerOnePoint > playerTwoPoint && playerTwoPoint >= 3)
         {
             score = "Advantage player1";

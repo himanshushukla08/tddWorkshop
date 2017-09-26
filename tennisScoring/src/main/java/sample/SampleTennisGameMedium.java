@@ -11,7 +11,7 @@ public class SampleTennisGameMedium implements ISampleTennisGame {
     }
 
     public void wonPoint(String playerName) {
-        if (playerName == "player1")
+        if (playerName.equals(playerOne.getName()))
             playerOne.score();
         else
             playerTwo.score();

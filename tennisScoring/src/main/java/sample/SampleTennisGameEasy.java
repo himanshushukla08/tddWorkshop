@@ -38,26 +38,14 @@ public class SampleTennisGameEasy implements ISampleTennisGame
         
         if (playerOnePoint > playerTwoPoint && playerOnePoint < 4)
         {
-            if (playerOnePoint ==2)
-                playerOneResponse ="Thirty";
-            if (playerOnePoint ==3)
-                playerOneResponse ="Forty";
-            if (playerTwoPoint ==1)
-                playerTwoResponse ="Fifteen";
-            if (playerTwoPoint ==2)
-                playerTwoResponse ="Thirty";
+            playerOneResponse = lookupBallOneThroughThree(playerOnePoint, playerOneResponse);
+            playerTwoResponse = lookupBallOneThroughThree(playerTwoPoint, playerTwoResponse);
             score = playerOneResponse + "-" + playerTwoResponse;
         }
         if (playerTwoPoint > playerOnePoint && playerTwoPoint < 4)
         {
-            if (playerTwoPoint ==2)
-                playerTwoResponse ="Thirty";
-            if (playerTwoPoint ==3)
-                playerTwoResponse ="Forty";
-            if (playerOnePoint ==1)
-                playerOneResponse ="Fifteen";
-            if (playerOnePoint ==2)
-                playerOneResponse ="Thirty";
+            playerTwoResponse = lookupBallOneThroughThree(playerTwoPoint, playerTwoResponse);
+            playerOneResponse = lookupBallOneThroughThree(playerOnePoint, playerOneResponse);
             score = playerOneResponse + "-" + playerTwoResponse;
         }
         

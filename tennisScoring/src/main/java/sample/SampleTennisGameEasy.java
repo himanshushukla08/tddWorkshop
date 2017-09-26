@@ -10,7 +10,7 @@ public class SampleTennisGameEasy implements ISampleTennisGame
 
     public String getScore(){
         String score = "";
-        if (playerOnePoint == playerTwoPoint && playerOnePoint < 4)
+        if (isAllScore())
         {
             if (playerOnePoint ==0)
                 score = "Love";
@@ -20,16 +20,16 @@ public class SampleTennisGameEasy implements ISampleTennisGame
                 score = "Thirty";
             score += "-All";
         }
-        if (playerOnePoint == playerTwoPoint && playerOnePoint >=3)
+        if (isDeuce())
             score = "Deuce";
 
-        if (playerOnePoint > 0 && playerTwoPoint ==0)
+        if (isLeadingAgainstLove(playerOnePoint, playerTwoPoint))
         {
             playerOneResponse = lookupBallOneThroughThree(playerOnePoint, playerOneResponse);
             playerTwoResponse = "Love";
             score = buildScore();
         }
-        if (playerTwoPoint > 0 && playerOnePoint ==0)
+        if (isLeadingAgainstLove(playerTwoPoint, playerOnePoint))
         {
             playerTwoResponse = lookupBallOneThroughThree(playerTwoPoint, playerTwoResponse);
             playerOneResponse = "Love";
@@ -62,6 +62,18 @@ public class SampleTennisGameEasy implements ISampleTennisGame
             score = "Win for player2";
         }
         return score;
+    }
+
+    private boolean isLeadingAgainstLove(int firstPlayerPoint, int secondPlayerPoint) {
+        return firstPlayerPoint > 0 && secondPlayerPoint ==0;
+    }
+
+    private boolean isDeuce() {
+        return playerOnePoint == playerTwoPoint && playerOnePoint >=3;
+    }
+
+    private boolean isAllScore() {
+        return playerOnePoint == playerTwoPoint && playerOnePoint < 4;
     }
 
     private String buildScore() {

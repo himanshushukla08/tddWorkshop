@@ -29,27 +29,25 @@ public class SampleTennisGameMedium implements ISampleTennisGame {
             score = calculateScore(score, tempScore);
         }
         if (isTied(playerOne, playerTwo)) score = calculateTiedScore();
-        if (playerOneAdvantage()) score = "Advantage player1";
-        if (playerTwoAdvantage()) score = "Advantage player2";
-        if (playerOneWinner()) score = "Win for player1";
-        if (playerTwoWinner()) score = "Win for player2";
+        if (hasAdvantage()) score = "Advantage " + winningPlayerName();
+        if (hasWinner()) score = "Win for " + winningPlayerName();
         return score;
     }
 
-    private boolean playerOneWinner() {
-        return atLeastOnePlayerHasFourPoints() && minusResult() >= 2;
+    private String winningPlayerName(){
+        if(playerOne.getPoints() > playerTwo.getPoints()){
+            return playerOne.getName();
+        }else{
+            return playerTwo.getName();
+        }
     }
 
-    private boolean playerTwoWinner() {
-        return atLeastOnePlayerHasFourPoints() && minusResult() <= -2;
+    private boolean hasWinner() {
+        return atLeastOnePlayerHasFourPoints() && (minusResult() >= 2 || minusResult() <=-2);
     }
 
-    private boolean playerTwoAdvantage() {
-        return atLeastOnePlayerHasFourPoints() && minusResult() == -1;
-    }
-
-    private boolean playerOneAdvantage() {
-        return atLeastOnePlayerHasFourPoints() && minusResult() == 1;
+    private boolean hasAdvantage() {
+        return atLeastOnePlayerHasFourPoints() && (minusResult() == 1 || minusResult() == -1);
     }
 
     private int minusResult() {

@@ -20,40 +20,36 @@ public class SampleTennisGameMedium implements ISampleTennisGame {
     public String getScore() {
         String score = "";
         int tempScore = 0;
-        if (isTied(playerOne, playerTwo)) {
-            score = calculateTiedScore();
-        } else if (atLeastOnePlayerHasFourPoints()) {
-            if (playerOneAdvantage()) score = "Advantage player1";
-            if (playerTwoAdvantage()) score = "Advantage player2";
-            if (playerOneWinner()) score = "Win for player1";
-            if (playerTwoWinner()) score = "Win for player2";
-        } else {
-            for (int i = 1; i < 3; i++) {
-                if (i == 1) tempScore = playerOne.getPoints();
-                else {
-                    score += "-";
-                    tempScore = playerTwo.getPoints();
-                }
-                score = calculateScore(score, tempScore);
+        for (int i = 1; i < 3; i++) {
+            if (i == 1) tempScore = playerOne.getPoints();
+            else {
+                score += "-";
+                tempScore = playerTwo.getPoints();
             }
+            score = calculateScore(score, tempScore);
         }
+        if (isTied(playerOne, playerTwo)) score = calculateTiedScore();
+        if (playerOneAdvantage()) score = "Advantage player1";
+        if (playerTwoAdvantage()) score = "Advantage player2";
+        if (playerOneWinner()) score = "Win for player1";
+        if (playerTwoWinner()) score = "Win for player2";
         return score;
     }
 
     private boolean playerOneWinner() {
-        return minusResult() >= 2;
+        return atLeastOnePlayerHasFourPoints() && minusResult() >= 2;
     }
 
     private boolean playerTwoWinner() {
-        return minusResult() <= -2;
+        return atLeastOnePlayerHasFourPoints() && minusResult() <= -2;
     }
 
     private boolean playerTwoAdvantage() {
-        return minusResult() == -1;
+        return atLeastOnePlayerHasFourPoints() && minusResult() == -1;
     }
 
     private boolean playerOneAdvantage() {
-        return minusResult() == 1;
+        return atLeastOnePlayerHasFourPoints() && minusResult() == 1;
     }
 
     private int minusResult() {

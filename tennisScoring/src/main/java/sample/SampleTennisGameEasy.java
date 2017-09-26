@@ -51,10 +51,6 @@ public class SampleTennisGameEasy implements ISampleTennisGame
         return score;
     }
 
-    private boolean isLeadingAgainstLove(int firstPlayerPoint, int secondPlayerPoint) {
-        return firstPlayerPoint > 0 && secondPlayerPoint ==0;
-    }
-
     private boolean isDeuce() {
         return playerOnePoint == playerTwoPoint && playerOnePoint >=3;
     }

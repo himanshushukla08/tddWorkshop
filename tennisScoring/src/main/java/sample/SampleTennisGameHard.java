@@ -11,22 +11,28 @@ public class SampleTennisGameHard implements ISampleTennisGame {
     }
 
     public String getScore() {
-        String message;
         String[] pointTranslations = new String[]{"Love", "Fifteen", "Thirty", "Forty"};
 
-        if (isLessThanFour(playerOne, playerTwo) &&
-                !(playerOne.getPoints() + playerTwo.getPoints() == 6)) {
-            message = pointTranslations[playerOne.getPoints()];
-            return (isTied(playerOne, playerTwo)) ? message +
-                    "-All" : message + "-" + pointTranslations[playerTwo.getPoints()];
+        if (isLessThanFour(playerOne, playerTwo) && totalScoreLessThanSix()) {
+            return (isTied(playerOne, playerTwo))
+                    ? pointTranslations[playerOne.getPoints()] + "-All"
+                    : pointTranslations[playerOne.getPoints()] + "-" + pointTranslations[playerTwo.getPoints()];
         } else {
-            if (isTied(playerOne, playerTwo))
-                return "Deuce";
-            message = playerOne.getPoints() > playerTwo.getPoints() ? playerOne.getName() : playerTwo.getName();
-            return ((playerOne.getPoints()-playerTwo.getPoints())*(playerOne.getPoints()-playerTwo.getPoints()) == 1) 
-                    ? "Advantage " + message
-                    : "Win for " + message;
+            if (isTied(playerOne, playerTwo)) return "Deuce";
+            return isAdvantage() ? "Advantage " + retrieveWinnersName() : "Win for " + retrieveWinnersName();
         }
+    }
+
+    private boolean totalScoreLessThanSix() {
+        return !(playerOne.getPoints() + playerTwo.getPoints() >= 6);
+    }
+
+    private boolean isAdvantage() {
+        return (playerOne.getPoints() - playerTwo.getPoints()) * (playerOne.getPoints() - playerTwo.getPoints()) == 1;
+    }
+
+    private String retrieveWinnersName() {
+        return playerOne.getPoints() > playerTwo.getPoints() ? playerOne.getName() : playerTwo.getName();
     }
 
     private boolean isLessThanFour(Player playerOne, Player playerTwo) {

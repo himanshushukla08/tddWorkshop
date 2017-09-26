@@ -19,6 +19,7 @@ public class SampleRomanNumeralCalculator {
     public String add(String numeralOne, String numeralTwo) {
         int oneCount = count(numeralOne, numeralTwo, "I");
         if(oneCount == 4) return "IV";
+        if(oneCount == 5) return "V";
         return numeralOne + numeralTwo;
     }
 

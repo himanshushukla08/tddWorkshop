@@ -33,4 +33,11 @@ public class SampleRomanNumeralCalculatorTest {
 
     assertEquals("IV", calculator.add("II", "II"));
   }
+
+  @Test
+  public void TwoPlusThreeIsFive() {
+    SampleRomanNumeralCalculator calculator = new SampleRomanNumeralCalculator();
+
+    assertEquals("V", calculator.add("II", "III"));
+  }
 }

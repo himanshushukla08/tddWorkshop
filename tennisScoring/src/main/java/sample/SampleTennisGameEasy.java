@@ -61,19 +61,11 @@ public class SampleTennisGameEasy implements ISampleTennisGame
     }
 
 
-    public void playerOneScore(){
-        playerOne.score();
-    }
-
-    public void playerTwoScore(){
-        playerTwo.score();
-    }
-
     public void wonPoint(String playerName) {
         if (playerName.equals(playerOne.getName()))
-            playerOneScore();
+            playerOne.score();
         else
-            playerTwoScore();
+            playerTwo.score();
     }
 
     public class Player{

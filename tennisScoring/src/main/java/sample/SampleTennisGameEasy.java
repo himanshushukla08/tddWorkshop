@@ -2,14 +2,13 @@ package sample;
 
 public class SampleTennisGameEasy implements ISampleTennisGame
 {
-    public String playerOneResponse = "";
-    public String playerTwoResponse = "";
 
     private Player playerOne = new Player("player1");
     private Player playerTwo = new Player("player2");
 
     public String getScore(){
         String score = "";
+
         if (isAllScore())
         {
             if (playerOne.getPoints() ==0)
@@ -20,25 +19,19 @@ public class SampleTennisGameEasy implements ISampleTennisGame
                 score = "Thirty";
             score += "-All";
         }
+
         if (isDeuce())
             score = "Deuce";
 
         if (isAhead(playerOne, playerTwo))
-        {
-            playerTwoResponse = buildResponse(playerTwo.getPoints(), playerTwoResponse);
-            playerOneResponse = buildResponse(playerOne.getPoints(), playerOneResponse);
-            score = buildScore();
-        }
+            score = buildScore(buildResponse(playerOne), buildResponse(playerTwo));
 
         if (hasAdvantage(playerOne, playerTwo))
-        {
             score = "Advantage " + retrieveWinner(playerOne, playerTwo).getName();
-        }
 
         if (hasWinner(playerOne, playerTwo))
-        {
             score = "Win for " + retrieveWinner(playerOne, playerTwo).getName();
-        }
+
         return score;
     }
 
@@ -90,18 +83,19 @@ public class SampleTennisGameEasy implements ISampleTennisGame
         return playerOne.getPoints() == playerTwo.getPoints() && playerOne.getPoints() < 4;
     }
 
-    private String buildScore() {
+    private String buildScore(String playerOneResponse, String playerTwoResponse) {
         return playerOneResponse + "-" + playerTwoResponse;
     }
 
-    private String buildResponse(int playerPoint, String playerResponse) {
-        if (playerPoint ==0)
+    private String buildResponse(Player player) {
+        String playerResponse = "";
+        if (player.getPoints() ==0)
             playerResponse = "Love";
-        if (playerPoint ==1)
+        if (player.getPoints() ==1)
             playerResponse = "Fifteen";
-        if (playerPoint ==2)
+        if (player.getPoints() ==2)
             playerResponse = "Thirty";
-        if (playerPoint ==3)
+        if (player.getPoints() ==3)
             playerResponse = "Forty";
         return playerResponse;
     }

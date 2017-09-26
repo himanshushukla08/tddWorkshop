@@ -58,4 +58,9 @@ public class SampleRomanNumeralCalculatorTest {
   public void fourPlusSixIsTen() {
     assertEquals("X", calculator.add("IV", "VI"));
   }
+
+  @Test
+  public void twelvePlusThirteenIsTwentyFive() {
+    assertEquals("XXV", calculator.add("XII", "XIII"));
+  }
 }

@@ -19,11 +19,8 @@ public class SampleRomanNumeralCalculator {
         Counter counterTwo = count(numeralTwo);
 
         int total = counterOne.value() + counterTwo.value();
-        if(total == 4) return "IV";
-        if(total == 5) return "V";
-        if(total == 9) return "IX";
-        if(total == 10) return "X";
-        return numeralOne + numeralTwo;
+
+        return new RomanNumerals().convert(total);
     }
 
     private Counter count(String numeralOne) {
@@ -36,6 +33,9 @@ public class SampleRomanNumeralCalculator {
             }
             if(letter.equals("V")){
                 counter.countFive();
+            }
+            if(letter.equals("X")){
+                counter.countTen();
             }
         }
         return counter;
@@ -57,6 +57,7 @@ public class SampleRomanNumeralCalculator {
         private int subtractingOnes = 0;
         private int addingOnes = 0;
         private int fives = 0;
+        private int tens = 0;
         private boolean subtractOne = false;
 
         private void countOne(){
@@ -73,8 +74,13 @@ public class SampleRomanNumeralCalculator {
             subtractOne = true;
         }
 
+        private void countTen(){
+            tens++;
+            subtractOne = true;
+        }
+
         private int value(){
-            return (fives * 5) + addingOnes - subtractingOnes;
+            return (tens * 10) + (fives * 5) + addingOnes - subtractingOnes;
         }
     }
 }

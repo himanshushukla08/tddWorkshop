@@ -2,17 +2,16 @@ package sample;
 
 import static sample.SampleTennisGameEasy.ScoringUtility.*;
 
-public class SampleTennisGameEasy implements ISampleTennisGame
-{
+public class SampleTennisGameEasy implements ISampleTennisGame {
     private Player playerOne;
     private Player playerTwo;
 
-    public SampleTennisGameEasy(String player1Name, String player2Name) {
-        this.playerOne = new Player(player1Name);
-        this.playerTwo = new Player(player2Name);
+    public SampleTennisGameEasy(String playerOneName, String playerTwoName) {
+        this.playerOne = new Player(playerOneName);
+        this.playerTwo = new Player(playerTwoName);
     }
 
-    public String getScore(){
+    public String getScore() {
         String score = "";
 
         if (isAllScore(playerOne, playerTwo))
@@ -34,10 +33,10 @@ public class SampleTennisGameEasy implements ISampleTennisGame
     }
 
     private Player retrieveWinner(Player playerOne, Player playerTwo) {
-        if(playerOne.getPoints() > playerTwo.getPoints()){
+        if (playerOne.getPoints() > playerTwo.getPoints()) {
             return playerOne;
         }
-        if(playerTwo.getPoints() > playerOne.getPoints()){
+        if (playerTwo.getPoints() > playerOne.getPoints()) {
             return playerTwo;
         }
         return null;
@@ -49,13 +48,13 @@ public class SampleTennisGameEasy implements ISampleTennisGame
 
     private String buildResponse(Player player) {
         String playerResponse = "";
-        if (player.getPoints() ==0)
+        if (player.getPoints() == 0)
             playerResponse = "Love";
-        if (player.getPoints() ==1)
+        if (player.getPoints() == 1)
             playerResponse = "Fifteen";
-        if (player.getPoints() ==2)
+        if (player.getPoints() == 2)
             playerResponse = "Thirty";
-        if (player.getPoints() ==3)
+        if (player.getPoints() == 3)
             playerResponse = "Forty";
         return playerResponse;
     }
@@ -68,23 +67,23 @@ public class SampleTennisGameEasy implements ISampleTennisGame
             playerTwo.score();
     }
 
-    public static class ScoringUtility{
+    public static class ScoringUtility {
         public static boolean isAhead(Player playerOne, Player playerTwo) {
             return playerOne.getPoints() != playerTwo.getPoints() && playerOne.getPoints() < 4;
         }
 
-        public static boolean hasAdvantage(Player playerOne, Player playerTwo){
+        public static boolean hasAdvantage(Player playerOne, Player playerTwo) {
             return isAdvantage(playerOne.getPoints(), playerTwo.getPoints()) ||
                     isAdvantage(playerTwo.getPoints(), playerOne.getPoints());
         }
 
-        public static boolean hasWinner(Player playerOne, Player playerTwo){
+        public static boolean hasWinner(Player playerOne, Player playerTwo) {
             return hasWon(playerOne.getPoints(), playerTwo.getPoints()) ||
                     hasWon(playerTwo.getPoints(), playerOne.getPoints());
         }
 
         public static boolean isDeuce(Player playerOne, Player playerTwo) {
-            return playerOne.getPoints() == playerTwo.getPoints() && playerOne.getPoints() >=3;
+            return playerOne.getPoints() == playerTwo.getPoints() && playerOne.getPoints() >= 3;
         }
 
         public static boolean isAllScore(Player playerOne, Player playerTwo) {

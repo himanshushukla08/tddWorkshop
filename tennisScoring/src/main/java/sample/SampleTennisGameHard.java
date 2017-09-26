@@ -1,7 +1,7 @@
 package sample;
 
 public class SampleTennisGameHard implements ISampleTennisGame {
-    
+
     private Player playerOne;
     private Player playerTwo;
 
@@ -52,7 +52,7 @@ public class SampleTennisGameHard implements ISampleTennisGame {
             playerOne.score();
         else
             playerTwo.score();
-        
+
     }
 
 }

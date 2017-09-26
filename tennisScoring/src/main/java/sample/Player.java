@@ -9,11 +9,11 @@ public class Player {
         this.name = name;
     }
 
-    public int getPoints(){
+    public int getPoints() {
         return points;
     }
 
-    public void score(){
+    public void score() {
         points++;
     }
 

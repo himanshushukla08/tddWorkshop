@@ -2,8 +2,8 @@ package sample;
 
 public interface ISampleTennisGame {
 
-  String getScore();
+    String getScore();
 
-  void wonPoint(String player);
+    void wonPoint(String player);
 
 }

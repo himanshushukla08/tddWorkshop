@@ -1,5 +1,7 @@
 package sample;
 
+import static sample.SampleTennisGameEasy.ScoringUtility.*;
+
 public class SampleTennisGameEasy implements ISampleTennisGame
 {
 
@@ -9,18 +11,10 @@ public class SampleTennisGameEasy implements ISampleTennisGame
     public String getScore(){
         String score = "";
 
-        if (isAllScore())
-        {
-            if (playerOne.getPoints() ==0)
-                score = "Love";
-            if (playerOne.getPoints() ==1)
-                score = "Fifteen";
-            if (playerOne.getPoints() ==2)
-                score = "Thirty";
-            score += "-All";
-        }
+        if (isAllScore(playerOne, playerTwo))
+            score = buildResponse(playerOne) + "-All";
 
-        if (isDeuce())
+        if (isDeuce(playerOne, playerTwo))
             score = "Deuce";
 
         if (isAhead(playerOne, playerTwo))
@@ -35,20 +29,6 @@ public class SampleTennisGameEasy implements ISampleTennisGame
         return score;
     }
 
-    private boolean isAhead(Player playerOne, Player playerTwo) {
-        return playerOne.getPoints() != playerTwo.getPoints() && playerOne.getPoints() < 4;
-    }
-
-    private boolean hasAdvantage(Player playerOne, Player playerTwo){
-        return isAdvantage(playerOne.getPoints(), playerTwo.getPoints()) ||
-                isAdvantage(playerTwo.getPoints(), playerOne.getPoints());
-    }
-
-    private boolean hasWinner(Player playerOne, Player playerTwo){
-        return hasWon(playerOne.getPoints(), playerTwo.getPoints()) ||
-                hasWon(playerTwo.getPoints(), playerOne.getPoints());
-    }
-
     private Player retrieveWinner(Player playerOne, Player playerTwo) {
         if(playerOne.getPoints() > playerTwo.getPoints()){
             return playerOne;
@@ -57,30 +37,6 @@ public class SampleTennisGameEasy implements ISampleTennisGame
             return playerTwo;
         }
         return null;
-    }
-
-    private boolean isAdvantage(int playerPoint, int comparisonPoint) {
-        return playerPoint > comparisonPoint && comparisonPoint >= 3;
-    }
-
-    private boolean hasWon(int playerPoint, int comparisonPoint) {
-        return isAtLeastFourPointGame(playerPoint, comparisonPoint) && isAheadByAtLeastFour(playerPoint, comparisonPoint);
-    }
-
-    private boolean isAheadByAtLeastFour(int playerPoint, int comparisonPoint) {
-        return (playerPoint - comparisonPoint) >= 2;
-    }
-
-    private boolean isAtLeastFourPointGame(int playerPoint, int comparisonPoint) {
-        return playerPoint >= 4 && comparisonPoint >= 0;
-    }
-
-    private boolean isDeuce() {
-        return playerOne.getPoints() == playerTwo.getPoints() && playerOne.getPoints() >=3;
-    }
-
-    private boolean isAllScore() {
-        return playerOne.getPoints() == playerTwo.getPoints() && playerOne.getPoints() < 4;
     }
 
     private String buildScore(String playerOneResponse, String playerTwoResponse) {
@@ -135,6 +91,46 @@ public class SampleTennisGameEasy implements ISampleTennisGame
 
         public String getName() {
             return name;
+        }
+    }
+
+    public static class ScoringUtility{
+        public static boolean isAhead(Player playerOne, Player playerTwo) {
+            return playerOne.getPoints() != playerTwo.getPoints() && playerOne.getPoints() < 4;
+        }
+
+        public static boolean hasAdvantage(Player playerOne, Player playerTwo){
+            return isAdvantage(playerOne.getPoints(), playerTwo.getPoints()) ||
+                    isAdvantage(playerTwo.getPoints(), playerOne.getPoints());
+        }
+
+        public static boolean hasWinner(Player playerOne, Player playerTwo){
+            return hasWon(playerOne.getPoints(), playerTwo.getPoints()) ||
+                    hasWon(playerTwo.getPoints(), playerOne.getPoints());
+        }
+
+        public static boolean isDeuce(Player playerOne, Player playerTwo) {
+            return playerOne.getPoints() == playerTwo.getPoints() && playerOne.getPoints() >=3;
+        }
+
+        public static boolean isAllScore(Player playerOne, Player playerTwo) {
+            return playerOne.getPoints() == playerTwo.getPoints() && playerOne.getPoints() < 4;
+        }
+
+        private static boolean isAdvantage(int playerPoint, int comparisonPoint) {
+            return playerPoint > comparisonPoint && comparisonPoint >= 3;
+        }
+
+        private static boolean hasWon(int playerPoint, int comparisonPoint) {
+            return isAtLeastFourPointGame(playerPoint, comparisonPoint) && isAheadByAtLeastFour(playerPoint, comparisonPoint);
+        }
+
+        private static boolean isAheadByAtLeastFour(int playerPoint, int comparisonPoint) {
+            return (playerPoint - comparisonPoint) >= 2;
+        }
+
+        private static boolean isAtLeastFourPointGame(int playerPoint, int comparisonPoint) {
+            return playerPoint >= 4 && comparisonPoint >= 0;
         }
     }
 }

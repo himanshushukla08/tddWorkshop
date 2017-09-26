@@ -30,25 +30,41 @@ public class SampleTennisGameEasy implements ISampleTennisGame
             score = buildScore();
         }
 
-        if (playerOnePoint > playerTwoPoint && playerTwoPoint >= 3)
+        if (isAdvantage(playerOnePoint, playerTwoPoint))
         {
             score = "Advantage player1";
         }
         
-        if (playerTwoPoint > playerOnePoint && playerOnePoint >= 3)
+        if (isAdvantage(playerTwoPoint, playerOnePoint))
         {
             score = "Advantage player2";
         }
         
-        if (playerOnePoint >=4 && playerTwoPoint >=0 && (playerOnePoint - playerTwoPoint)>=2)
+        if (hasWon(playerOnePoint, playerTwoPoint))
         {
             score = "Win for player1";
         }
-        if (playerTwoPoint >=4 && playerOnePoint >=0 && (playerTwoPoint - playerOnePoint)>=2)
+        if (hasWon(playerTwoPoint, playerOnePoint))
         {
             score = "Win for player2";
         }
         return score;
+    }
+
+    private boolean isAdvantage(int playerPoint, int comparisonPoint) {
+        return playerPoint > comparisonPoint && comparisonPoint >= 3;
+    }
+
+    private boolean hasWon(int playerPoint, int comparisonPoint) {
+        return isAtLeastFourPointGame(playerPoint, comparisonPoint) && isAheadByAtLeastFour(playerPoint, comparisonPoint);
+    }
+
+    private boolean isAheadByAtLeastFour(int playerPoint, int comparisonPoint) {
+        return (playerPoint - comparisonPoint) >= 2;
+    }
+
+    private boolean isAtLeastFourPointGame(int playerPoint, int comparisonPoint) {
+        return playerPoint >= 4 && comparisonPoint >= 0;
     }
 
     private boolean isDeuce() {

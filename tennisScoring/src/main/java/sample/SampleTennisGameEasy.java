@@ -30,25 +30,36 @@ public class SampleTennisGameEasy implements ISampleTennisGame
             score = buildScore();
         }
 
-        if (isAdvantage(playerOne.getPoints(), playerTwo.getPoints()))
+        if (hasAdvantage(playerOne, playerTwo))
         {
-            score = "Advantage " + playerOne.getName();
+            score = "Advantage " + retrieveWinner(playerOne, playerTwo).getName();
         }
 
-        if (isAdvantage(playerTwo.getPoints(), playerOne.getPoints()))
+        if (hasWinner(playerOne, playerTwo))
         {
-            score = "Advantage " + playerTwo.getName();
-        }
-
-        if (hasWon(playerOne.getPoints(), playerTwo.getPoints()))
-        {
-            score = "Win for " + playerOne.getName();
-        }
-        if (hasWon(playerTwo.getPoints(), playerOne.getPoints()))
-        {
-            score = "Win for " + playerTwo.getName();
+            score = "Win for " + retrieveWinner(playerOne, playerTwo).getName();
         }
         return score;
+    }
+
+    private boolean hasAdvantage(Player playerOne, Player playerTwo){
+        return isAdvantage(playerOne.getPoints(), playerTwo.getPoints()) ||
+                isAdvantage(playerTwo.getPoints(), playerOne.getPoints());
+    }
+
+    private boolean hasWinner(Player playerOne, Player playerTwo){
+        return hasWon(playerOne.getPoints(), playerTwo.getPoints()) ||
+                hasWon(playerTwo.getPoints(), playerOne.getPoints());
+    }
+
+    private Player retrieveWinner(Player playerOne, Player playerTwo) {
+        if(playerOne.getPoints() > playerTwo.getPoints()){
+            return playerOne;
+        }
+        if(playerTwo.getPoints() > playerOne.getPoints()){
+            return playerTwo;
+        }
+        return null;
     }
 
     private boolean isAdvantage(int playerPoint, int comparisonPoint) {

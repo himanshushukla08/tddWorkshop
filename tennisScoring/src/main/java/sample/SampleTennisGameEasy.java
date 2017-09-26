@@ -23,7 +23,7 @@ public class SampleTennisGameEasy implements ISampleTennisGame
         if (isDeuce())
             score = "Deuce";
 
-        if (playerOne.getPoints() != playerTwo.getPoints() && playerOne.getPoints() < 4)
+        if (isAhead(playerOne, playerTwo))
         {
             playerTwoResponse = buildResponse(playerTwo.getPoints(), playerTwoResponse);
             playerOneResponse = buildResponse(playerOne.getPoints(), playerOneResponse);
@@ -40,6 +40,10 @@ public class SampleTennisGameEasy implements ISampleTennisGame
             score = "Win for " + retrieveWinner(playerOne, playerTwo).getName();
         }
         return score;
+    }
+
+    private boolean isAhead(Player playerOne, Player playerTwo) {
+        return playerOne.getPoints() != playerTwo.getPoints() && playerOne.getPoints() < 4;
     }
 
     private boolean hasAdvantage(Player playerOne, Player playerTwo){

@@ -11,23 +11,32 @@ public class SampleTennisGameHard implements ISampleTennisGame {
     }
 
     public String getScore() {
-        String s;
-        if (playerOne.getPoints() < 4 && playerTwo.getPoints() < 4 && 
+        String message;
+        String[] pointTranslations = new String[]{"Love", "Fifteen", "Thirty", "Forty"};
+
+        if (isLessThanFour(playerOne, playerTwo) &&
                 !(playerOne.getPoints() + playerTwo.getPoints() == 6)) {
-            String[] p = new String[]{"Love", "Fifteen", "Thirty", "Forty"}; 
-            s = p[playerOne.getPoints()];
-            return (playerOne.getPoints() == playerTwo.getPoints()) ? s + 
-                    "-All" : s + "-" + p[playerTwo.getPoints()];
+            message = pointTranslations[playerOne.getPoints()];
+            return (isTied(playerOne, playerTwo)) ? message +
+                    "-All" : message + "-" + pointTranslations[playerTwo.getPoints()];
         } else {
-            if (playerOne.getPoints() == playerTwo.getPoints())
+            if (isTied(playerOne, playerTwo))
                 return "Deuce";
-            s = playerOne.getPoints() > playerTwo.getPoints() ? playerOne.getName() : playerTwo.getName();
+            message = playerOne.getPoints() > playerTwo.getPoints() ? playerOne.getName() : playerTwo.getName();
             return ((playerOne.getPoints()-playerTwo.getPoints())*(playerOne.getPoints()-playerTwo.getPoints()) == 1) 
-                    ? "Advantage " + s 
-                    : "Win for " + s;
+                    ? "Advantage " + message
+                    : "Win for " + message;
         }
     }
-    
+
+    private boolean isLessThanFour(Player playerOne, Player playerTwo) {
+        return playerOne.getPoints() < 4 && playerTwo.getPoints() < 4;
+    }
+
+    private boolean isTied(Player playerOne, Player playerTwo) {
+        return playerOne.getPoints() == playerTwo.getPoints();
+    }
+
     public void wonPoint(String playerName) {
         if (playerName.equals(playerOne.getName()))
             playerOne.score();

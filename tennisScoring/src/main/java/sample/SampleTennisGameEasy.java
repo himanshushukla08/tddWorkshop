@@ -4,9 +4,13 @@ import static sample.SampleTennisGameEasy.ScoringUtility.*;
 
 public class SampleTennisGameEasy implements ISampleTennisGame
 {
+    private Player playerOne;
+    private Player playerTwo;
 
-    private Player playerOne = new Player("player1");
-    private Player playerTwo = new Player("player2");
+    public SampleTennisGameEasy(String player1Name, String player2Name) {
+        this.playerOne = new Player(player1Name);
+        this.playerTwo = new Player(player2Name);
+    }
 
     public String getScore(){
         String score = "";
@@ -65,14 +69,14 @@ public class SampleTennisGameEasy implements ISampleTennisGame
         playerTwo.score();
     }
 
-    public void wonPoint(String player) {
-        if (player == "player1")
+    public void wonPoint(String playerName) {
+        if (playerName.equals(playerOne.getName()))
             playerOneScore();
         else
             playerTwoScore();
     }
 
-    private class Player{
+    public class Player{
         private int points;
         private String name;
 

@@ -13,7 +13,7 @@ public class SampleTennisGameHard implements ISampleTennisGame {
     public String getScore() {
         String[] pointTranslations = new String[]{"Love", "Fifteen", "Thirty", "Forty"};
 
-        if (isLessThanFour(playerOne, playerTwo) && totalScoreLessThanSix()) {
+        if (scoreBelowDeuce()) {
             return (isTied(playerOne, playerTwo))
                     ? pointTranslations[playerOne.getPoints()] + "-All"
                     : pointTranslations[playerOne.getPoints()] + "-" + pointTranslations[playerTwo.getPoints()];
@@ -21,6 +21,10 @@ public class SampleTennisGameHard implements ISampleTennisGame {
             if (isTied(playerOne, playerTwo)) return "Deuce";
             return isAdvantage() ? "Advantage " + retrieveWinnersName() : "Win for " + retrieveWinnersName();
         }
+    }
+
+    private boolean scoreBelowDeuce() {
+        return isLessThanFour(playerOne, playerTwo) && totalScoreLessThanSix();
     }
 
     private boolean totalScoreLessThanSix() {

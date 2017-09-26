@@ -2,51 +2,51 @@ package sample;
 
 public class SampleTennisGameEasy implements ISampleTennisGame
 {
-    public int playerOnePoint = 0;
-    public int playerTwoPoint = 0;
-    
     public String playerOneResponse = "";
     public String playerTwoResponse = "";
+
+    private Player playerOne = new Player("player1");
+    private Player playerTwo = new Player("player2");
 
     public String getScore(){
         String score = "";
         if (isAllScore())
         {
-            if (playerOnePoint ==0)
+            if (playerOne.getPoints() ==0)
                 score = "Love";
-            if (playerOnePoint ==1)
+            if (playerOne.getPoints() ==1)
                 score = "Fifteen";
-            if (playerOnePoint ==2)
+            if (playerOne.getPoints() ==2)
                 score = "Thirty";
             score += "-All";
         }
         if (isDeuce())
             score = "Deuce";
 
-        if (playerOnePoint != playerTwoPoint && playerOnePoint < 4)
+        if (playerOne.getPoints() != playerTwo.getPoints() && playerOne.getPoints() < 4)
         {
-            playerTwoResponse = buildResponse(playerTwoPoint, playerTwoResponse);
-            playerOneResponse = buildResponse(playerOnePoint, playerOneResponse);
+            playerTwoResponse = buildResponse(playerTwo.getPoints(), playerTwoResponse);
+            playerOneResponse = buildResponse(playerOne.getPoints(), playerOneResponse);
             score = buildScore();
         }
 
-        if (isAdvantage(playerOnePoint, playerTwoPoint))
+        if (isAdvantage(playerOne.getPoints(), playerTwo.getPoints()))
         {
-            score = "Advantage player1";
+            score = "Advantage " + playerOne.getName();
         }
-        
-        if (isAdvantage(playerTwoPoint, playerOnePoint))
+
+        if (isAdvantage(playerTwo.getPoints(), playerOne.getPoints()))
         {
-            score = "Advantage player2";
+            score = "Advantage " + playerTwo.getName();
         }
-        
-        if (hasWon(playerOnePoint, playerTwoPoint))
+
+        if (hasWon(playerOne.getPoints(), playerTwo.getPoints()))
         {
-            score = "Win for player1";
+            score = "Win for " + playerOne.getName();
         }
-        if (hasWon(playerTwoPoint, playerOnePoint))
+        if (hasWon(playerTwo.getPoints(), playerOne.getPoints()))
         {
-            score = "Win for player2";
+            score = "Win for " + playerTwo.getName();
         }
         return score;
     }
@@ -68,11 +68,11 @@ public class SampleTennisGameEasy implements ISampleTennisGame
     }
 
     private boolean isDeuce() {
-        return playerOnePoint == playerTwoPoint && playerOnePoint >=3;
+        return playerOne.getPoints() == playerTwo.getPoints() && playerOne.getPoints() >=3;
     }
 
     private boolean isAllScore() {
-        return playerOnePoint == playerTwoPoint && playerOnePoint < 4;
+        return playerOne.getPoints() == playerTwo.getPoints() && playerOne.getPoints() < 4;
     }
 
     private String buildScore() {
@@ -93,11 +93,11 @@ public class SampleTennisGameEasy implements ISampleTennisGame
 
 
     public void playerOneScore(){
-        playerOnePoint++;
+        playerOne.score();
     }
-    
+
     public void playerTwoScore(){
-        playerTwoPoint++;
+        playerTwo.score();
     }
 
     public void wonPoint(String player) {
@@ -105,5 +105,27 @@ public class SampleTennisGameEasy implements ISampleTennisGame
             playerOneScore();
         else
             playerTwoScore();
+    }
+
+    private class Player{
+        private int points;
+        private String name;
+
+        public Player(String name) {
+            this.points = 0;
+            this.name = name;
+        }
+
+        public int getPoints(){
+            return points;
+        }
+
+        public void score(){
+            points++;
+        }
+
+        public String getName() {
+            return name;
+        }
     }
 }

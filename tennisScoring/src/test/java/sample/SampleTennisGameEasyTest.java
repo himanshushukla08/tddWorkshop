@@ -15,7 +15,7 @@ public class SampleTennisGameEasyTest extends SampleBaseTennisTest {
   }
 
   public SampleTennisGameEasyTest(int player1Score, int player2Score, String expectedScore) {
-    super(player1Score, player2Score, expectedScore, SampleTennisGameEasy::new);
+    super(player1Score, player2Score, expectedScore, (player1Name, player2Name) -> new SampleTennisGameEasy());
   }
 
 }

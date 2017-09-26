@@ -40,4 +40,11 @@ public class SampleRomanNumeralCalculatorTest {
 
     assertEquals("V", calculator.add("II", "III"));
   }
+
+  @Test
+  public void FourPlusOneIsFive() {
+    SampleRomanNumeralCalculator calculator = new SampleRomanNumeralCalculator();
+
+    assertEquals("V", calculator.add("IV", "I"));
+  }
 }

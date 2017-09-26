@@ -1,8 +1,6 @@
 package sample;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class SampleRomanNumeralCalculator {
 
@@ -17,20 +15,64 @@ public class SampleRomanNumeralCalculator {
     }
 
     public String add(String numeralOne, String numeralTwo) {
-        int oneCount = count(numeralOne, numeralTwo, "I");
-        if(oneCount == 4) return "IV";
-        if(oneCount == 5) return "V";
+        Counter counterOne = count(numeralOne);
+        Counter counterTwo = count(numeralTwo);
+
+        int total = counterOne.value() + counterTwo.value();
+        if(total == 4) return "IV";
+        if(total == 5) return "V";
         return numeralOne + numeralTwo;
     }
 
-    private int count(String numeralOne, String numeralTwo, String target) {
-        int total = 0;
-        for (char character : (numeralOne + numeralTwo).toCharArray()) {
+    private Counter count(String numeralOne) {
+        Counter counter = new Counter();
+
+        for (Character character : reverse(numeralOne)) {
             String letter = String.valueOf(character);
-            if(letter.equals(target)){
-                total++;
+            if(letter.equals("I")){
+                counter.countOne();
+            }
+            if(letter.equals("V")){
+                counter.countFive();
             }
         }
-        return total;
+        return counter;
+    }
+
+    private List<Character> reverse(String numeral) {
+        List<Character> characters = new ArrayList<>();
+
+        for(char character :numeral.toCharArray()){
+            characters.add(character);
+        }
+
+        Collections.reverse(characters);
+
+        return characters;
+    }
+
+    private class Counter {
+        private int subtractingOnes = 0;
+        private int addingOnes = 0;
+        private int fives = 0;
+        private boolean subtractOne = false;
+
+        private void countOne(){
+            if(subtractOne){
+                subtractingOnes++;
+            }else{
+                addingOnes++;
+            }
+            subtractOne = false;
+        }
+
+        private void countFive(){
+            fives++;
+            subtractOne = true;
+        }
+
+        private int value(){
+            return (fives * 5) + addingOnes - subtractingOnes;
+        }
     }
 }

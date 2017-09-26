@@ -21,30 +21,37 @@ public class SampleRomanNumeralCalculatorTest {
   }
 
   @Test
-  public void TwoPlusOneIsThree() {
+  public void twoPlusOneIsThree() {
     SampleRomanNumeralCalculator calculator = new SampleRomanNumeralCalculator();
 
     assertEquals("III", calculator.add("II", "I"));
   }
 
   @Test
-  public void TwoPlusTwoIsFour() {
+  public void twoPlusTwoIsFour() {
     SampleRomanNumeralCalculator calculator = new SampleRomanNumeralCalculator();
 
     assertEquals("IV", calculator.add("II", "II"));
   }
 
   @Test
-  public void TwoPlusThreeIsFive() {
+  public void twoPlusThreeIsFive() {
     SampleRomanNumeralCalculator calculator = new SampleRomanNumeralCalculator();
 
     assertEquals("V", calculator.add("II", "III"));
   }
 
   @Test
-  public void FourPlusOneIsFive() {
+  public void fourPlusOneIsFive() {
     SampleRomanNumeralCalculator calculator = new SampleRomanNumeralCalculator();
 
     assertEquals("V", calculator.add("IV", "I"));
+  }
+
+  @Test
+  public void sixPlusOneIsSeven() {
+    SampleRomanNumeralCalculator calculator = new SampleRomanNumeralCalculator();
+
+    assertEquals("VII", calculator.add("VI", "I"));
   }
 }

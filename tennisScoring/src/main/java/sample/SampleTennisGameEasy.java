@@ -36,8 +36,7 @@ public class SampleTennisGameEasy implements ISampleTennisGame
             score = playerOneResponse + "-" + playerTwoResponse;
         }
 
-        if ((playerOnePoint > playerTwoPoint && playerOnePoint < 4)||
-                (playerTwoPoint > playerOnePoint && playerTwoPoint < 4))
+        if (playerOnePoint != playerTwoPoint && playerOnePoint < 4)
         {
             playerTwoResponse = lookupBallOneThroughThree(playerTwoPoint, playerTwoResponse);
             playerOneResponse = lookupBallOneThroughThree(playerOnePoint, playerOneResponse);

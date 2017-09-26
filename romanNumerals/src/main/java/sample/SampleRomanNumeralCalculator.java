@@ -21,6 +21,7 @@ public class SampleRomanNumeralCalculator {
         int total = counterOne.value() + counterTwo.value();
         if(total == 4) return "IV";
         if(total == 5) return "V";
+        if(total == 9) return "IX";
         return numeralOne + numeralTwo;
     }
 

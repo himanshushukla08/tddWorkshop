@@ -25,25 +25,13 @@ public class SampleTennisGameEasy implements ISampleTennisGame
         
         if (playerOnePoint > 0 && playerTwoPoint ==0)
         {
-            if (playerOnePoint ==1)
-                playerOneResponse = "Fifteen";
-            if (playerOnePoint ==2)
-                playerOneResponse = "Thirty";
-            if (playerOnePoint ==3)
-                playerOneResponse = "Forty";
-            
+            playerOneResponse = lookupBallOneThroughThree(playerOnePoint, playerOneResponse);
             playerTwoResponse = "Love";
             score = playerOneResponse + "-" + playerTwoResponse;
         }
         if (playerTwoPoint > 0 && playerOnePoint ==0)
         {
-            if (playerTwoPoint ==1)
-                playerTwoResponse = "Fifteen";
-            if (playerTwoPoint ==2)
-                playerTwoResponse = "Thirty";
-            if (playerTwoPoint ==3)
-                playerTwoResponse = "Forty";
-            
+            playerTwoResponse = lookupBallOneThroughThree(playerTwoPoint, playerTwoResponse);
             playerOneResponse = "Love";
             score = playerOneResponse + "-" + playerTwoResponse;
         }
@@ -94,7 +82,17 @@ public class SampleTennisGameEasy implements ISampleTennisGame
         return score;
     }
 
-    
+    private String lookupBallOneThroughThree(int playerPoint, String playerResponse) {
+        if (playerPoint ==1)
+            playerResponse = "Fifteen";
+        if (playerPoint ==2)
+            playerResponse = "Thirty";
+        if (playerPoint ==3)
+            playerResponse = "Forty";
+        return playerResponse;
+    }
+
+
     public void playerOneScore(){
         playerOnePoint++;
     }

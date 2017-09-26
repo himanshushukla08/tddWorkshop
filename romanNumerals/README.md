@@ -1,7 +1,7 @@
-Goal
+# Goal
 For this project we would like you to design a program to work with Roman numerals- converting arabic numbers to their Roman numeral equivalent and vice versa.
 
-Description
+# Description
 The Romans wrote their numbers using letters; specifically the letters "I, V, X, L, C, D, and M." There were certain rules that the numerals followed which should be observed.
 
 The symbols 'I', 'X', 'C', and 'M' can be repeated at most 3 times in a row. 'V', 'L', and 'D' can never be repeated.
@@ -10,11 +10,13 @@ The '1' symbols ('I', 'X', and 'C') can only be subtracted from the 2 next highe
 Only one subtraction can be made per numeral ('XC' is allowed, 'XXC' is not).
 We have provided a reference table of the Roman numerals that you will have to use and their arabic number equivalents.
 
-Numeral Number
-I   1
-V   5
-X   10
-L   50
-C   100
-D   500
-M   1000
+# Numeral Number
+|Roman Numeral | Number |
+|--------------|--------|
+|I             | 1      |
+|V             | 5      |
+|X             | 10     |
+|L             | 50     |
+|C             | 100    |
+|D             | 500    |
+|M             | 1000   |

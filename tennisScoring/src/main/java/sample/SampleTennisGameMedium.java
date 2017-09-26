@@ -18,16 +18,7 @@ public class SampleTennisGameMedium implements ISampleTennisGame {
     }
 
     public String getScore() {
-        String score = "";
-        int tempScore = 0;
-        for (int i = 1; i < 3; i++) {
-            if (i == 1) tempScore = playerOne.getPoints();
-            else {
-                score += "-";
-                tempScore = playerTwo.getPoints();
-            }
-            score = calculateScore(score, tempScore);
-        }
+        String score = calculateScore(playerOne) + "-" + calculateScore(playerTwo);
         if (isTied(playerOne, playerTwo)) score = calculateTiedScore();
         if (hasAdvantage()) score = "Advantage " + winningPlayerName();
         if (hasWinner()) score = "Win for " + winningPlayerName();
@@ -58,19 +49,20 @@ public class SampleTennisGameMedium implements ISampleTennisGame {
         return playerOne.getPoints() >= 4 || playerTwo.getPoints() >= 4;
     }
 
-    private String calculateScore(String score, int tempScore) {
-        switch (tempScore) {
+    private String calculateScore(Player player) {
+        String score = "";
+        switch (player.getPoints()) {
             case 0:
-                score += "Love";
+                score = "Love";
                 break;
             case 1:
-                score += "Fifteen";
+                score = "Fifteen";
                 break;
             case 2:
-                score += "Thirty";
+                score = "Thirty";
                 break;
             case 3:
-                score += "Forty";
+                score = "Forty";
                 break;
         }
         return score;

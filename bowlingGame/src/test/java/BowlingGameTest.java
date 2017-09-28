@@ -38,4 +38,9 @@ public class BowlingGameTest {
     public void scoreSixteenWhenThrowBonusAfterSpare() {
         assertEquals(16, new BowlingGame().score("3/3------------------"));
     }
+
+    @Test
+    public void scoreFourConsecutiveRollsWithoutSpares() {
+        assertEquals(16, new BowlingGame().score("3553----------------"));
+    }
 }

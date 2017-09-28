@@ -16,6 +16,7 @@ include 'services:webservice'
 */
 
 include 'fizzBuzz'
+include 'bowlingGame'
 include 'gildedRose'
 include 'integrationKata'
 include 'refactorLegacyKata'

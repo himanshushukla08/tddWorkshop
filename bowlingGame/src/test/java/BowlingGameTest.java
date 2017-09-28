@@ -28,4 +28,9 @@ public class BowlingGameTest {
     public void scoreTenWhenFirstTurnStrikeAndMissOtherRolls() {
         assertEquals(10, new BowlingGame().score("X-------------------"));
     }
+
+    @Test
+    public void scoreTenWhenFirstTurnSpareAndMissOtherRolls() {
+        assertEquals(10, new BowlingGame().score("3/-------------------"));
+    }
 }

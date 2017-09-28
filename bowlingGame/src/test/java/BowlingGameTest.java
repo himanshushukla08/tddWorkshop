@@ -23,4 +23,9 @@ public class BowlingGameTest {
     public void scoreTwentyWhenAllRollsThrowOnePin() {
         assertEquals(20, new BowlingGame().score("11111111111111111111"));
     }
+
+    @Test
+    public void scoreTenWhenFirstTurnStrikeAndMissOtherRolls() {
+        assertEquals(10, new BowlingGame().score("X-------------------"));
+    }
 }

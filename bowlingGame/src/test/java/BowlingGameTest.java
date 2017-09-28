@@ -33,4 +33,9 @@ public class BowlingGameTest {
     public void scoreTenWhenFirstTurnSpareAndMissOtherRolls() {
         assertEquals(10, new BowlingGame().score("3/-------------------"));
     }
+
+    @Test
+    public void scoreSixteenWhenThrowBonusAfterSpare() {
+        assertEquals(16, new BowlingGame().score("3/3------------------"));
+    }
 }

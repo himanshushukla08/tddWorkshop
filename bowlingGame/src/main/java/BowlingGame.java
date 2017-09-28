@@ -5,8 +5,7 @@ public class BowlingGame {
 
         for (Character character : rolls.toCharArray()) {
             try {
-                Integer roll = Integer.valueOf(character.toString());
-                score += roll;
+                score += Integer.valueOf(character.toString());
             } catch (NumberFormatException exception) {
 
             }

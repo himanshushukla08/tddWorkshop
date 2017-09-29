@@ -11,11 +11,16 @@ public class BowlingGame {
             try {
                 int currentScore = Integer.valueOf(character.toString());
 
-                if (hasSpare) {
-                    score += previousScore;
+                if (hasSpare && bonusRollCount < 1) {
+                    score += currentScore;
+                    bonusRollCount++;
+                } else {
+                    bonusRollCount = 0;
                 }
+
                 if (hasStrike && (bonusRollCount < 2)) {
                     score += currentScore;
+                    bonusRollCount++;
                 } else {
                     bonusRollCount = 0;
                 }

@@ -43,4 +43,9 @@ public class BowlingGameTest {
     public void scoreFourConsecutiveRollsWithoutSpares() {
         assertEquals(16, new BowlingGame().score("3553----------------"));
     }
+
+    @Test
+    public void scoreBonusAfterStrike() {
+        assertEquals(26, new BowlingGame().score("X53----------------"));
+    }
 }

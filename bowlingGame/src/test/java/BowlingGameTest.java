@@ -48,4 +48,9 @@ public class BowlingGameTest {
     public void scorebonusAfterStrike() {
         assertEquals(26, new BowlingGame().score("X53----------------"));
     }
+
+    @Test
+    public void scorePerfectScore() {
+        assertEquals(300, new BowlingGame().score("XXXXXXXXXXXX"));
+    }
 }

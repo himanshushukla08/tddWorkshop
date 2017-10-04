@@ -4,11 +4,14 @@ import java.util.List;
 
 public class BowlingGame {
 
+    int scoreOneBack = 0;
+    int scoreTwoBack = 0;
+
     public int score(String rolls) {
+
+        int position = 0;
         int score = 0;
         boolean hasSpare = false;
-        int scoreOneBack = 0;
-        int scoreTwoBack = 0;
 
         for (String stringScore : reverse(rolls)) {
             try {
@@ -20,13 +23,16 @@ public class BowlingGame {
                     hasSpare = false;
                 }
 
-                scoreTwoBack = scoreOneBack;
-                scoreOneBack = currentScore;
+                trackPreviousScores(currentScore);
+
             } catch (NumberFormatException exception) {
                 if ("X".equals(stringScore)) {
-                    score += scoreOneBack;
-                    score += scoreTwoBack;
+                    if (position >= 3) {
+                        score += scoreOneBack;
+                        score += scoreTwoBack;
+                    }
                     score += 10;
+                    trackPreviousScores(10);
                 }
                 if ("/".equals(stringScore)) {
                     score += 10;
@@ -34,8 +40,14 @@ public class BowlingGame {
                     hasSpare = true;
                 }
             }
+            position++;
         }
         return score;
+    }
+
+    private void trackPreviousScores(int currentScore) {
+        scoreTwoBack = scoreOneBack;
+        scoreOneBack = currentScore;
     }
 
     private List<String> reverse(String rolls) {

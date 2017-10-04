@@ -45,8 +45,13 @@ public class BowlingGameTest {
     }
 
     @Test
-    public void scorebonusAfterStrike() {
+    public void scoreBonusAfterStrike() {
         assertEquals(26, new BowlingGame().score("X53----------------"));
+    }
+
+    @Test
+    public void scoreAllTurnsWithSparesAndLastBonus() {
+        assertEquals(150, new BowlingGame().score("5/5/5/5/5/5/5/5/5/5/5"));
     }
 
     @Test

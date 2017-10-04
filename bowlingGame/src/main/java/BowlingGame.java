@@ -36,7 +36,9 @@ public class BowlingGame {
                 }
                 if ("/".equals(stringScore)) {
                     score += 10;
-                    score += scoreOneBack;
+                    if (position >= 3) {
+                        score += scoreOneBack;
+                    }
                     hasSpare = true;
                 }
             }

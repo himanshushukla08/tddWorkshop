@@ -7,6 +7,9 @@ public class SampleRockPaperScissorsGame {
     public static final String SCISSORS = "scissors";
 
     public String determineWinner(String gestureOne, String gestureTwo) {
+        if (gestureOne.equals(gestureTwo)) {
+            return "go again";
+        }
         if (PAPER.equals(gestureOne) && ROCK.equals(gestureTwo)) {
             return createMessage(gestureOne, gestureTwo);
         }

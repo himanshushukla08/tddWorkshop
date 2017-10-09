@@ -28,4 +28,9 @@ public class SampleRockPaperScissorsGameTest {
     public void scissorsCutPaper() {
         assertEquals("scissors beats paper", game.determineWinner("scissors", "paper"));
     }
+
+    @Test
+    public void scissorsOnlyGoesAgain() {
+        assertEquals("go again", game.determineWinner("scissors", "scissors"));
+    }
 }

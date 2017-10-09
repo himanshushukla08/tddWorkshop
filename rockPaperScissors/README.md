@@ -8,5 +8,6 @@ Your task is to create the core logic that checks which gesture wins in a matchu
 | --------- | --------- | ------------------- |
 | rock      | scissors  | rock beats scissors |
 | paper     | rock      | paper beats rock    |
+| paper     | paper     | go again            |
 
 ... and so on. Good luck!

@@ -10,6 +10,9 @@ public class SampleRockPaperScissorsGame {
         if (PAPER.equals(gestureOne) && ROCK.equals(gestureTwo)) {
             return createMessage(gestureOne, gestureTwo);
         }
+        if (SCISSORS.equals(gestureOne) && PAPER.equals(gestureTwo)) {
+            return createMessage(gestureOne, gestureTwo);
+        }
         return createMessage(ROCK, SCISSORS);
     }
 

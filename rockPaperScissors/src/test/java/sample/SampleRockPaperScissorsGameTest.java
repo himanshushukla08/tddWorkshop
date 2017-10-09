@@ -12,4 +12,11 @@ public class SampleRockPaperScissorsGameTest {
 
         assertEquals("rock beats scissors", game.determineWinner("rock", "scissors"));
     }
+
+    @Test
+    public void paperWrapsRockes() {
+        SampleRockPaperScissorsGame game = new SampleRockPaperScissorsGame();
+
+        assertEquals("paper beats rock", game.determineWinner("paper", "rock"));
+    }
 }

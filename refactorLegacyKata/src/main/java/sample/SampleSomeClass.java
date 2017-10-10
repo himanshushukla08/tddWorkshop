@@ -1,11 +1,13 @@
 package sample;
 
-import java.util.Random;
-
 public class SampleSomeClass {
 
-    Random random = new Random();
     String myRandomFlag = "";
+    private RandomWrapper random;
+
+    public SampleSomeClass(RandomWrapper random) {
+        this.random = random;
+    }
 
     public String someMethod() {
 

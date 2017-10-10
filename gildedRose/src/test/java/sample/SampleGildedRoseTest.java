@@ -34,11 +34,31 @@ public class SampleGildedRoseTest {
 
         assertInitialSulfurasValues(inventoryBefore);
 
-        assertItem(inventoryBefore.get(0), "+5 Dexterity Vest", 9, 20);
+        assertItem(inventoryBefore.get(0), "+5 Dexterity Vest", 9, 19);
         assertItem(inventoryBefore.get(1), "Aged Brie", 1, 0);
-        assertItem(inventoryBefore.get(2), "Elixir of the Mongoose", 4, 7);
+        assertItem(inventoryBefore.get(2), "Elixir of the Mongoose", 4, 6);
         assertItem(inventoryBefore.get(4), "Backstage passes to a TAFKAL80ETC concert", 14, 20);
-        assertItem(inventoryBefore.get(5), "Conjured Mana Cake", 2, 6);
+        assertItem(inventoryBefore.get(5), "Conjured Mana Cake", 2, 5);
+
+        assertEquals(6, inventory.size());
+    }
+
+    @Test
+    public void reduceQualityForAllItemsExceptSulfurasPassesAndBrie() {
+        List<SampleItem> inventoryBefore = sampleGildedRose.getInventory();
+
+        assertInitialInventory(inventoryBefore);
+
+        List<SampleItem> inventory = sampleGildedRose.updateQuality();
+
+        assertInitialSulfurasValues(inventoryBefore);
+
+        assertItem(inventoryBefore.get(1), "Aged Brie", 1, 0);
+        assertItem(inventoryBefore.get(4), "Backstage passes to a TAFKAL80ETC concert", 14, 20);
+
+        assertItem(inventoryBefore.get(0), "+5 Dexterity Vest", 9, 19);
+        assertItem(inventoryBefore.get(2), "Elixir of the Mongoose", 4, 6);
+        assertItem(inventoryBefore.get(5), "Conjured Mana Cake", 2, 5);
 
         assertEquals(6, inventory.size());
     }

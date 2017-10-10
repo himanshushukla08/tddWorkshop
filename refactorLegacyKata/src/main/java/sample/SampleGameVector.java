@@ -4,6 +4,8 @@ import java.awt.geom.Point2D;
 
 public class SampleGameVector {
 
+    public static final double HALF_PI = Math.PI / 2;
+    public static final double DOUBLE_PI = Math.PI * 2;
     final double slope;
     final double distance;
     final VectorDirection direction;
@@ -24,9 +26,9 @@ public class SampleGameVector {
     }
 
     private static boolean shouldReverse(double angle) {
-        angle = angle % (Math.PI * 2);
-        final boolean shouldReverse = (angle > Math.PI / 2 && angle <= 3 * Math.PI / 2)
-                || (angle < -(Math.PI / 2) && angle >= -(3 * Math.PI / 2));
+        angle = angle % DOUBLE_PI;
+        final boolean shouldReverse = (angle > HALF_PI && angle <= 3 * HALF_PI)
+                || (angle < -HALF_PI && angle >= -(3 * HALF_PI));
         return shouldReverse;
     }
 
@@ -36,7 +38,7 @@ public class SampleGameVector {
         if (direction.equals(VectorDirection.LEFT)) {
             return arctanAngle + Math.PI;
         } else if (arctanAngle < 0) {
-            return arctanAngle + Math.PI * 2;
+            return arctanAngle + DOUBLE_PI;
         } else {
             return arctanAngle;
         }
@@ -47,7 +49,7 @@ public class SampleGameVector {
         if (direction.equals(VectorDirection.LEFT)) {
             angle1 = Math.atan(slope) + Math.PI;
         } else if (Math.atan(slope) < 0) {
-            angle1 = Math.atan(slope) + Math.PI * 2;
+            angle1 = Math.atan(slope) + DOUBLE_PI;
         } else {
             angle1 = Math.atan(slope);
         }
@@ -55,7 +57,7 @@ public class SampleGameVector {
         if (additionalVector.direction.equals(VectorDirection.LEFT)) {
             angle = Math.atan(additionalVector.slope) + Math.PI;
         } else if (Math.atan(additionalVector.slope) < 0) {
-            angle = Math.atan(additionalVector.slope) + Math.PI * 2;
+            angle = Math.atan(additionalVector.slope) + DOUBLE_PI;
         } else {
             angle = Math.atan(additionalVector.slope);
         }

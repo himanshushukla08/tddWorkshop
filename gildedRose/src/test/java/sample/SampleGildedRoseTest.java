@@ -28,16 +28,11 @@ public class SampleGildedRoseTest {
     public void reduceSellInForAllItemsExceptSulfuras() {
         List<SampleItem> inventoryBefore = sampleGildedRose.getInventory();
 
-        assertItem(inventoryBefore.get(0), "+5 Dexterity Vest", 10, 20);
-        assertItem(inventoryBefore.get(1), "Aged Brie", 2, 0);
-        assertItem(inventoryBefore.get(2), "Elixir of the Mongoose", 5, 7);
-        assertItem(inventoryBefore.get(3), "Sulfuras, Hand of Ragnaros", 0, 80);
-        assertItem(inventoryBefore.get(4), "Backstage passes to a TAFKAL80ETC concert", 15, 20);
-        assertItem(inventoryBefore.get(5), "Conjured Mana Cake", 3, 6);
+        assertInitialInventory(inventoryBefore);
 
         List<SampleItem> inventory = sampleGildedRose.updateQuality();
 
-        assertItem(inventoryBefore.get(3), "Sulfuras, Hand of Ragnaros", 0, 80);
+        assertInitialSulfurasValues(inventoryBefore);
 
         assertItem(inventoryBefore.get(0), "+5 Dexterity Vest", 9, 20);
         assertItem(inventoryBefore.get(1), "Aged Brie", 1, 0);
@@ -46,6 +41,19 @@ public class SampleGildedRoseTest {
         assertItem(inventoryBefore.get(5), "Conjured Mana Cake", 2, 6);
 
         assertEquals(6, inventory.size());
+    }
+
+    private void assertInitialInventory(List<SampleItem> inventoryBefore) {
+        assertItem(inventoryBefore.get(0), "+5 Dexterity Vest", 10, 20);
+        assertItem(inventoryBefore.get(1), "Aged Brie", 2, 0);
+        assertItem(inventoryBefore.get(2), "Elixir of the Mongoose", 5, 7);
+        assertInitialSulfurasValues(inventoryBefore);
+        assertItem(inventoryBefore.get(4), "Backstage passes to a TAFKAL80ETC concert", 15, 20);
+        assertItem(inventoryBefore.get(5), "Conjured Mana Cake", 3, 6);
+    }
+
+    private void assertInitialSulfurasValues(List<SampleItem> inventoryBefore) {
+        assertItem(inventoryBefore.get(3), "Sulfuras, Hand of Ragnaros", 0, 80);
     }
 
     private void assertItem(SampleItem item, String expectedName, int expectedSellIn, int expectedQuality) {

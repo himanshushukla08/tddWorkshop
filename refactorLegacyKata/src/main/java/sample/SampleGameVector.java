@@ -42,23 +42,9 @@ public class SampleGameVector {
     }
 
     public SampleGameVector add(final SampleGameVector additionalVector) {
-        double angleOne;
-        if (direction.equals(VectorDirection.LEFT)) {
-            angleOne = Math.atan(slope) + Math.PI;
-        } else if (Math.atan(slope) < 0) {
-            angleOne = Math.atan(slope) + DOUBLE_PI;
-        } else {
-            angleOne = Math.atan(slope);
-        }
+        double angleOne = lookupAngle(direction, slope);
+        double angleTwo = lookupAngle(additionalVector.direction, additionalVector.slope);
 
-        double angleTwo;
-        if (additionalVector.direction.equals(VectorDirection.LEFT)) {
-            angleTwo = Math.atan(additionalVector.slope) + Math.PI;
-        } else if (Math.atan(additionalVector.slope) < 0) {
-            angleTwo = Math.atan(additionalVector.slope) + DOUBLE_PI;
-        } else {
-            angleTwo = Math.atan(additionalVector.slope);
-        }
         final double finalX = new Point2D.Double(Math.cos(angleOne) * distance, Math.sin(angleOne) * distance).getX() + new Point2D.Double(Math.cos(angleTwo) * additionalVector.distance, Math.sin(angleTwo) * additionalVector.distance).getX();
         final double finalY = new Point2D.Double(Math.cos(angleOne) * distance, Math.sin(angleOne) * distance).getY() + new Point2D.Double(Math.cos(angleTwo) * additionalVector.distance, Math.sin(angleTwo) * additionalVector.distance).getY();
         return new SampleGameVector(finalY / finalX, Math.sqrt(finalX * finalX + finalY * finalY), finalX < 0 ? VectorDirection.LEFT : VectorDirection.RIGHT);
@@ -67,6 +53,20 @@ public class SampleGameVector {
     public double getAngle() {
         return getAngle(this.slope, this.direction);
     }
+
+    private double lookupAngle(VectorDirection direction, double slope) {
+        double angleOne;
+        if (direction.equals(VectorDirection.LEFT)) {
+            angleOne = Math.atan(slope) + Math.PI;
+        } else if (Math.atan(slope) < 0) {
+            angleOne = Math.atan(slope) + DOUBLE_PI;
+        } else {
+            angleOne = Math.atan(slope);
+        }
+        return angleOne;
+    }
+
+
 
     public enum VectorDirection {RIGHT, LEFT;}
 }

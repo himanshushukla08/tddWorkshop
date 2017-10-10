@@ -10,8 +10,7 @@ public class SampleGameVector {
     final double distance;
     final VectorDirection direction;
 
-    public SampleGameVector(final double slope, final double distance,
-                            final VectorDirection direction) {
+    public SampleGameVector(final double slope, final double distance, final VectorDirection direction) {
         this.slope = Double.isNaN(slope) ? 0 : slope;
         this.distance = distance;
         this.direction = direction;
@@ -25,14 +24,7 @@ public class SampleGameVector {
         }
     }
 
-    private static boolean shouldReverse(double angle) {
-        angle = angle % DOUBLE_PI;
-        return (angle > HALF_PI && angle <= 3 * HALF_PI)
-                || (angle < -HALF_PI && angle >= -(3 * HALF_PI));
-    }
-
-    public static double getAngle(final double slope,
-                                  final VectorDirection direction) {
+    public static double getAngle(final double slope, final VectorDirection direction) {
         final double arctanAngle = Math.atan(slope);
         if (direction.equals(VectorDirection.LEFT)) {
             return arctanAngle + Math.PI;
@@ -43,25 +35,32 @@ public class SampleGameVector {
         }
     }
 
+    private static boolean shouldReverse(double angle) {
+        angle = angle % DOUBLE_PI;
+        return (angle > HALF_PI && angle <= 3 * HALF_PI)
+                || (angle < -HALF_PI && angle >= -(3 * HALF_PI));
+    }
+
     public SampleGameVector add(final SampleGameVector additionalVector) {
-        double angle1;
+        double angleOne;
         if (direction.equals(VectorDirection.LEFT)) {
-            angle1 = Math.atan(slope) + Math.PI;
+            angleOne = Math.atan(slope) + Math.PI;
         } else if (Math.atan(slope) < 0) {
-            angle1 = Math.atan(slope) + DOUBLE_PI;
+            angleOne = Math.atan(slope) + DOUBLE_PI;
         } else {
-            angle1 = Math.atan(slope);
+            angleOne = Math.atan(slope);
         }
-        double angle;
+
+        double angleTwo;
         if (additionalVector.direction.equals(VectorDirection.LEFT)) {
-            angle = Math.atan(additionalVector.slope) + Math.PI;
+            angleTwo = Math.atan(additionalVector.slope) + Math.PI;
         } else if (Math.atan(additionalVector.slope) < 0) {
-            angle = Math.atan(additionalVector.slope) + DOUBLE_PI;
+            angleTwo = Math.atan(additionalVector.slope) + DOUBLE_PI;
         } else {
-            angle = Math.atan(additionalVector.slope);
+            angleTwo = Math.atan(additionalVector.slope);
         }
-        final double finalX = new Point2D.Double(Math.cos(angle1) * distance, Math.sin(angle1) * distance).getX() + new Point2D.Double(Math.cos(angle) * additionalVector.distance, Math.sin(angle) * additionalVector.distance).getX();
-        final double finalY = new Point2D.Double(Math.cos(angle1) * distance, Math.sin(angle1) * distance).getY() + new Point2D.Double(Math.cos(angle) * additionalVector.distance, Math.sin(angle) * additionalVector.distance).getY();
+        final double finalX = new Point2D.Double(Math.cos(angleOne) * distance, Math.sin(angleOne) * distance).getX() + new Point2D.Double(Math.cos(angleTwo) * additionalVector.distance, Math.sin(angleTwo) * additionalVector.distance).getX();
+        final double finalY = new Point2D.Double(Math.cos(angleOne) * distance, Math.sin(angleOne) * distance).getY() + new Point2D.Double(Math.cos(angleTwo) * additionalVector.distance, Math.sin(angleTwo) * additionalVector.distance).getY();
         return new SampleGameVector(finalY / finalX, Math.sqrt(finalX * finalX + finalY * finalY), finalX < 0 ? VectorDirection.LEFT : VectorDirection.RIGHT);
     }
 

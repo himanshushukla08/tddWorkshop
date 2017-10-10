@@ -11,7 +11,7 @@ public class SampleSomeClass {
 
     public String someMethod() {
 
-        if ((this.thingOne() || (!this.thingOne() && this.thingTwo())) && this.thingThree()) {
+        if ((random.nextBoolean() || (!random.nextBoolean() && random.nextBoolean())) && random.nextBoolean()) {
             myRandomFlag = "Bacon";
         } else {
             myRandomFlag = "Tofu";
@@ -19,17 +19,4 @@ public class SampleSomeClass {
 
         return myRandomFlag;
     }
-
-    public boolean thingOne() {
-        return random.nextBoolean();
-    }
-
-    public boolean thingTwo() {
-        return random.nextBoolean();
-    }
-
-    public boolean thingThree() {
-        return random.nextBoolean();
-    }
-
 }

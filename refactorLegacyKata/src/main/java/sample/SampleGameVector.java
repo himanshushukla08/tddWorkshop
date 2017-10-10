@@ -27,9 +27,8 @@ public class SampleGameVector {
 
     private static boolean shouldReverse(double angle) {
         angle = angle % DOUBLE_PI;
-        final boolean shouldReverse = (angle > HALF_PI && angle <= 3 * HALF_PI)
+        return (angle > HALF_PI && angle <= 3 * HALF_PI)
                 || (angle < -HALF_PI && angle >= -(3 * HALF_PI));
-        return shouldReverse;
     }
 
     public static double getAngle(final double slope,

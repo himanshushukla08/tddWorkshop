@@ -16,9 +16,11 @@ public class SampleGameVector {
     }
 
     public static SampleGameVector create(final double angle, final double distance) {
-        final VectorDirection direction = shouldReverse(angle) ? VectorDirection.LEFT
-                : VectorDirection.RIGHT;
-        return new SampleGameVector(Math.tan(angle), distance, direction);
+        if (shouldReverse(angle)) {
+            return new SampleGameVector(Math.tan(angle), distance, VectorDirection.LEFT);
+        } else {
+            return new SampleGameVector(Math.tan(angle), distance, VectorDirection.RIGHT);
+        }
     }
 
     private static boolean shouldReverse(double angle) {

@@ -45,9 +45,10 @@ public class SampleGameVector {
         double angleOne = lookupAngle(direction, slope);
         double angleTwo = lookupAngle(additionalVector.direction, additionalVector.slope);
 
-        final double finalX = new Point2D.Double(Math.cos(angleOne) * distance, Math.sin(angleOne) * distance).getX() + new Point2D.Double(Math.cos(angleTwo) * additionalVector.distance, Math.sin(angleTwo) * additionalVector.distance).getX();
-        final double finalY = new Point2D.Double(Math.cos(angleOne) * distance, Math.sin(angleOne) * distance).getY() + new Point2D.Double(Math.cos(angleTwo) * additionalVector.distance, Math.sin(angleTwo) * additionalVector.distance).getY();
-        return new SampleGameVector(finalY / finalX, Math.sqrt(finalX * finalX + finalY * finalY), finalX < 0 ? VectorDirection.LEFT : VectorDirection.RIGHT);
+        final double finalX = buildPointTwoD(angleOne).getX() + additionalVector.buildPointTwoD(angleTwo).getX();
+        final double finalY = buildPointTwoD(angleOne).getY() + additionalVector.buildPointTwoD(angleTwo).getY();
+        return new SampleGameVector(finalY / finalX, Math.sqrt(finalX * finalX + finalY * finalY), finalX < 0 ?
+                VectorDirection.LEFT : VectorDirection.RIGHT);
     }
 
     public double getAngle() {
@@ -66,7 +67,9 @@ public class SampleGameVector {
         return angleOne;
     }
 
-
+    private Point2D.Double buildPointTwoD(double angle) {
+        return new Point2D.Double(Math.cos(angle) * distance, Math.sin(angle) * distance);
+    }
 
     public enum VectorDirection {RIGHT, LEFT;}
 }

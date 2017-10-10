@@ -2,7 +2,6 @@ package sample;
 
 public class SampleSomeClass {
 
-    String myRandomFlag = "";
     private RandomWrapper random;
 
     public SampleSomeClass(RandomWrapper random) {
@@ -12,11 +11,9 @@ public class SampleSomeClass {
     public String someMethod() {
 
         if ((random.nextBoolean() || (!random.nextBoolean() && random.nextBoolean())) && random.nextBoolean()) {
-            myRandomFlag = "Bacon";
+            return "Bacon";
         } else {
-            myRandomFlag = "Tofu";
+            return "Tofu";
         }
-
-        return myRandomFlag;
     }
 }

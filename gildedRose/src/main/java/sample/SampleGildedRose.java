@@ -20,7 +20,7 @@ public class SampleGildedRose {
 
 
     public List<SampleItem> updateQuality() {
-//        for (int i = 0; i < inventory.size(); i++) {
+        for (int i = 0; i < inventory.size(); i++) {
 //            if ((!"Aged Brie".equals(inventory.get(i).getName())) && !"Backstage passes to a TAFKAL80ETC concert".equals(inventory.get(i).getName())) {
 //                if (inventory.get(i).getQuality() > 0) {
 //                    if (!"Sulfuras, Hand of Ragnaros".equals(inventory.get(i).getName())) {
@@ -47,9 +47,9 @@ public class SampleGildedRose {
 //                }
 //            }
 //
-//            if (!"Sulfuras, Hand of Ragnaros".equals(inventory.get(i).getName())) {
-//                inventory.get(i).setSellIn(inventory.get(i).getSellIn() - 1);
-//            }
+            if (!"Sulfuras, Hand of Ragnaros".equals(inventory.get(i).getName())) {
+                inventory.get(i).setSellIn(inventory.get(i).getSellIn() - 1);
+            }
 //
 //            if (inventory.get(i).getSellIn() < 0) {
 //                if (!"Aged Brie".equals(inventory.get(i).getName())) {
@@ -68,8 +68,11 @@ public class SampleGildedRose {
 //                    }
 //                }
 //            }
-//        }
+        }
         return inventory;
     }
 
+    public List<SampleItem> getInventory() {
+        return inventory;
+    }
 }

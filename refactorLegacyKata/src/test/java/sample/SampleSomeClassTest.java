@@ -10,72 +10,92 @@ import static org.junit.Assert.assertEquals;
 public class SampleSomeClassTest {
 
     @Test
-    public void allFalseReturnsTofu() {
-        RandomWrapper randomWrapperStub = new RandomWrapperStub(Arrays.asList(false, false, false, false).iterator());
-        SampleSomeClass someClass = new SampleSomeClass(randomWrapperStub);
-        assertEquals("Tofu", someClass.someMethod());
-    }
-
-    @Test
-    public void allTrueReturnsBacon() {
-        RandomWrapper randomWrapperStub = new RandomWrapperStub(Arrays.asList(true, true, true, true).iterator());
-        SampleSomeClass someClass = new SampleSomeClass(randomWrapperStub);
-        assertEquals("Bacon", someClass.someMethod());
-    }
-
-    @Test
-    public void falseTrueTrueTrueReturnsTofu() {
-        RandomWrapper randomWrapperStub = new RandomWrapperStub(Arrays.asList(false, true, true, true).iterator());
-        SampleSomeClass someClass = new SampleSomeClass(randomWrapperStub);
-        assertEquals("Tofu", someClass.someMethod());
-    }
-
-    @Test
-    public void trueFalseTrueTrueReturnsTofu() {
-        RandomWrapper randomWrapperStub = new RandomWrapperStub(Arrays.asList(true, false, true, true).iterator());
-        SampleSomeClass someClass = new SampleSomeClass(randomWrapperStub);
-        assertEquals("Tofu", someClass.someMethod());
-    }
-
-    @Test
-    public void falseFalseTrueTrueReturnsBacon() {
-        RandomWrapper randomWrapperStub = new RandomWrapperStub(Arrays.asList(false, false, true, true).iterator());
-        SampleSomeClass someClass = new SampleSomeClass(randomWrapperStub);
-        assertEquals("Bacon", someClass.someMethod());
-    }
-
-    @Test
-    public void falseFalseFalseTrueReturnsTofu() {
-        RandomWrapper randomWrapperStub = new RandomWrapperStub(Arrays.asList(false, false, false, true).iterator());
-        SampleSomeClass someClass = new SampleSomeClass(randomWrapperStub);
-        assertEquals("Tofu", someClass.someMethod());
-    }
-
-    @Test
-    public void trueTrueFalseTrueReturnsBacon() {
-        RandomWrapper randomWrapperStub = new RandomWrapperStub(Arrays.asList(true, true, false, true).iterator());
-        SampleSomeClass someClass = new SampleSomeClass(randomWrapperStub);
-        assertEquals("Bacon", someClass.someMethod());
+    public void trueTrueTrueTrueReturnsBacon() {
+        assertRandom("Bacon", true, true, true, true);
     }
 
     @Test
     public void trueTrueTrueFalseReturnsBacon() {
-        RandomWrapper randomWrapperStub = new RandomWrapperStub(Arrays.asList(true, true, true, false).iterator());
-        SampleSomeClass someClass = new SampleSomeClass(randomWrapperStub);
-        assertEquals("Bacon", someClass.someMethod());
+        assertRandom("Bacon", true, true, true, false);
+    }
+
+    @Test
+    public void trueTrueFalseTrueReturnsBacon() {
+        assertRandom("Bacon", true, true, false, true);
     }
 
     @Test
     public void trueTrueFalseFalseReturnsBacon() {
-        RandomWrapper randomWrapperStub = new RandomWrapperStub(Arrays.asList(true, true, false, false).iterator());
-        SampleSomeClass someClass = new SampleSomeClass(randomWrapperStub);
-        assertEquals("Bacon", someClass.someMethod());
+        assertRandom("Bacon", true, true, false, false);
     }
 
     @Test
-    public void trueFalseFalseFalseReturnsBacon() {
-        RandomWrapper randomWrapperStub = new RandomWrapperStub(Arrays.asList(true, true, false, false).iterator());
-        SampleSomeClass someClass = new SampleSomeClass(randomWrapperStub);
-        assertEquals("Bacon", someClass.someMethod());
+    public void falseFalseTrueTrueReturnsBacon() {
+        assertRandom("Bacon", false, false, true, true);
+    }
+
+    @Test
+    public void trueFalseTrueTrueReturnsTofu() {
+        assertRandom("Tofu", true, false, true, true);
+    }
+
+    @Test
+    public void trueFalseTrueFalseReturnsTofu() {
+        assertRandom("Tofu", true, false, true, false);
+    }
+
+    @Test
+    public void trueFalseFalseTrueReturnsTofu() {
+        assertRandom("Tofu", true, false, false, true);
+    }
+
+    @Test
+    public void trueFalseFalseFalseReturnsTofu() {
+        assertRandom("Tofu", true, false, false, false);
+    }
+
+    @Test
+    public void falseTrueTrueTrueReturnsTofu() {
+        assertRandom("Tofu", false, true, true, true);
+    }
+
+    @Test
+    public void falseTrueTrueFalseReturnsTofu() {
+        assertRandom("Tofu", false, true, true, false);
+    }
+
+    @Test
+    public void falseTrueFalseTrueReturnsTofu() {
+        assertRandom("Tofu", false, true, false, true);
+    }
+
+    @Test
+    public void falseTrueFalseFalseReturnsTofu() {
+        assertRandom("Tofu", false, true, false, false);
+    }
+
+    @Test
+    public void falseFalseTrueFalseReturnsTofu() {
+        assertRandom("Tofu", false, false, true, false);
+    }
+
+    @Test
+    public void falseFalseFalseTrueReturnsTofu() {
+        assertRandom("Tofu", false, false, false, true);
+    }
+
+    @Test
+    public void falseFalseFalseFalseReturnsTofu() {
+        assertRandom("Tofu", false, false, false, false);
+    }
+
+
+    private void assertRandom(String expectedValue, boolean first, boolean second, boolean third, boolean fourth) {
+        assertEquals(expectedValue, buildFor(first, second, third, fourth).someMethod());
+    }
+
+    private SampleSomeClass buildFor(boolean first, boolean second, boolean third, boolean fourth) {
+        RandomWrapper randomWrapperStub = new RandomWrapperStub(Arrays.asList(first, second, third, fourth).iterator());
+        return new SampleSomeClass(randomWrapperStub);
     }
 }

@@ -30,14 +30,14 @@ public class SampleGildedRose {
                 increaseQuality(item);
             }
 
-            if ("Backstage passes to a TAFKAL80ETC concert".equals(item.getName())) {
-                if (item.getSellIn() < 11 && item.getQuality() < 50) {
-                    increaseQuality(item);
-                }
+            if ("Backstage passes to a TAFKAL80ETC concert".equals(item.getName()) &&
+                    item.getSellIn() < 11 && item.getQuality() < 50) {
+                increaseQuality(item);
+            }
 
-                if (item.getSellIn() < 6 && item.getQuality() < 50) {
-                    increaseQuality(item);
-                }
+            if ("Backstage passes to a TAFKAL80ETC concert".equals(item.getName()) &&
+                    item.getSellIn() < 6 && item.getQuality() < 50) {
+                increaseQuality(item);
             }
 
             if (!"Sulfuras, Hand of Ragnaros".equals(item.getName())) {

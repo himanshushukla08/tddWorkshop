@@ -25,6 +25,7 @@ public class SampleGildedRose {
             if (!stableQualityItems().contains(item.getName()) && item.getQuality() > 0) {
                 decreaseQuality(item);
             }
+
             if (!stableQualityItems().contains(item.getName()) && item.getQuality() > 0 &&
                     item.getSellIn() < 0) {
                 decreaseQuality(item);
@@ -55,7 +56,7 @@ public class SampleGildedRose {
 
             if ("Backstage passes to a TAFKAL80ETC concert".equals(item.getName()) &&
                     item.getSellIn() < 0) {
-                item.setQuality(item.getQuality() - item.getQuality());
+                item.setQuality(0);
             }
         }
         return inventory;

@@ -44,18 +44,16 @@ public class SampleGildedRose {
                 item.setSellIn(item.getSellIn() - 1);
             }
 
-            if (item.getSellIn() < 0) {
-                if (!"Aged Brie".equals(item.getName())) {
+            if (!"Aged Brie".equals(item.getName()) && item.getSellIn() < 0) {
 
-                } else if (item.getQuality() < 50) {
-                    increaseQuality(item);
-                }
-                if ("Backstage passes to a TAFKAL80ETC concert".equals(item.getName())) {
-                    item.setQuality(item.getQuality() - item.getQuality());
-                }
-                if (!stableQualityItems().contains(item.getName()) && item.getQuality() > 0) {
-                    decreaseQuality(item);
-                }
+            } else if (item.getQuality() < 50 && item.getSellIn() < 0) {
+                increaseQuality(item);
+            }
+            if ("Backstage passes to a TAFKAL80ETC concert".equals(item.getName()) && item.getSellIn() < 0) {
+                item.setQuality(item.getQuality() - item.getQuality());
+            }
+            if (!stableQualityItems().contains(item.getName()) && item.getQuality() > 0 && item.getSellIn() < 0) {
+                decreaseQuality(item);
             }
         }
         return inventory;

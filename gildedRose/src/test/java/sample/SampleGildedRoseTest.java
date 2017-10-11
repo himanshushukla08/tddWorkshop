@@ -90,9 +90,9 @@ public class SampleGildedRoseTest {
 
         assertInitialInventory(inventoryBefore);
 
-        List<SampleItem> inventory = updateQualityTimes(10);
+        List<SampleItem> inventory = updateQualityTimes(6);
 
-        assertItem(inventory.get(4), "Backstage passes to a TAFKAL80ETC concert", 5, 35);
+        assertItem(inventory.get(4), "Backstage passes to a TAFKAL80ETC concert", 9, 27);
 
         assertEquals(6, inventory.size());
     }

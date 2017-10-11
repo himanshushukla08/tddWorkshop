@@ -84,6 +84,19 @@ public class SampleGildedRoseTest {
         assertEquals(6, inventory.size());
     }
 
+    @Test
+    public void reduceBackstagePassesToLowerThanElevenSellInAndLowerThanFiftyQuality() {
+        List<SampleItem> inventoryBefore = sampleGildedRose.getInventory();
+
+        assertInitialInventory(inventoryBefore);
+
+        List<SampleItem> inventory = updateQualityTimes(10);
+
+        assertItem(inventory.get(4), "Backstage passes to a TAFKAL80ETC concert", 5, 35);
+
+        assertEquals(6, inventory.size());
+    }
+
     private List<SampleItem> updateQualityTimes(int times) {
         List<SampleItem> items = new ArrayList<>();
         for (int i = 0; i < times; i++) {

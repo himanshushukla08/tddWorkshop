@@ -23,18 +23,18 @@ public class SampleGildedRose {
     public List<SampleItem> updateQuality() {
         for (SampleItem item : inventory) {
             if (!stableQualityItems().contains(item.getName()) && item.getQuality() > 0) {
-                item.setQuality(decreaseQuality(item));
+                decreaseQuality(item);
             } else {
                 if (item.getQuality() < 50) {
-                    item.setQuality(increaseQuality(item));
+                    increaseQuality(item);
 
                     if ("Backstage passes to a TAFKAL80ETC concert".equals(item.getName())) {
                         if (item.getSellIn() < 11 && item.getQuality() < 50) {
-                            item.setQuality(increaseQuality(item));
+                            increaseQuality(item);
                         }
 
                         if (item.getSellIn() < 6 && item.getQuality() < 50) {
-                            item.setQuality(increaseQuality(item));
+                            increaseQuality(item);
                         }
                     }
                 }
@@ -46,12 +46,8 @@ public class SampleGildedRose {
 
             if (item.getSellIn() < 0) {
                 if (!"Aged Brie".equals(item.getName())) {
-                    if (!"Backstage passes to a TAFKAL80ETC concert".equals(item.getName())) {
-                        if (item.getQuality() > 0) {
-                            if (!"Sulfuras, Hand of Ragnaros".equals(item.getName())) {
-                                item.setQuality(decreaseQuality(item));
-                            }
-                        }
+                    if (!highDemandItems().contains(item.getName()) && item.getQuality() > 0) {
+                        decreaseQuality(item);
                     }
                     if ("Backstage passes to a TAFKAL80ETC concert".equals(item.getName())) {
                         item.setQuality(item.getQuality() - item.getQuality());
@@ -59,7 +55,7 @@ public class SampleGildedRose {
                 }
                 if ("Aged Brie".equals(item.getName())) {
                     if (item.getQuality() < 50) {
-                        item.setQuality(increaseQuality(item));
+                        increaseQuality(item);
                     }
                 }
             }
@@ -67,16 +63,21 @@ public class SampleGildedRose {
         return inventory;
     }
 
-    private int decreaseQuality(SampleItem item) {
-        return item.getQuality() - 1;
+    private void increaseQuality(SampleItem item) {
+        item.setQuality(item.getQuality() + 1);
     }
 
-    private int increaseQuality(SampleItem item) {
-        return item.getQuality() + 1;
+    private void decreaseQuality(SampleItem item) {
+        item.setQuality(item.getQuality() - 1);
     }
 
     private List<String> stableQualityItems() {
         return Arrays.asList("Aged Brie", "Backstage passes to a TAFKAL80ETC concert",
+                "Sulfuras, Hand of Ragnaros");
+    }
+
+    private List<String> highDemandItems() {
+        return Arrays.asList("Backstage passes to a TAFKAL80ETC concert",
                 "Sulfuras, Hand of Ragnaros");
     }
 

@@ -59,10 +59,12 @@ public class SampleGildedRose {
                                 item.setQuality(item.getQuality() - 1);
                             }
                         }
-                    } else {
+                    }
+                    if ("Backstage passes to a TAFKAL80ETC concert".equals(item.getName())) {
                         item.setQuality(item.getQuality() - item.getQuality());
                     }
-                } else {
+                }
+                if ("Aged Brie".equals(item.getName())) {
                     if (item.getQuality() < 50) {
                         item.setQuality(item.getQuality() + 1);
                     }

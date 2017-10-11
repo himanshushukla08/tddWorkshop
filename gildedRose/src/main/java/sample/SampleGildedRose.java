@@ -22,21 +22,19 @@ public class SampleGildedRose {
 
     public List<SampleItem> updateQuality() {
         for (SampleItem item : inventory) {
-            if (!stableQualityItems().contains(item.getName())) {
-                if (item.getQuality() > 0) {
-                    item.setQuality(item.getQuality() - 1);
-                }
+            if (!stableQualityItems().contains(item.getName()) && item.getQuality() > 0) {
+                item.setQuality(decreaseQuality(item));
             } else {
                 if (item.getQuality() < 50) {
-                    item.setQuality(item.getQuality() + 1);
+                    item.setQuality(increaseQuality(item));
 
                     if ("Backstage passes to a TAFKAL80ETC concert".equals(item.getName())) {
                         if (item.getSellIn() < 11 && item.getQuality() < 50) {
-                            item.setQuality(item.getQuality() + 1);
+                            item.setQuality(increaseQuality(item));
                         }
 
                         if (item.getSellIn() < 6 && item.getQuality() < 50) {
-                            item.setQuality(item.getQuality() + 1);
+                            item.setQuality(increaseQuality(item));
                         }
                     }
                 }
@@ -51,7 +49,7 @@ public class SampleGildedRose {
                     if (!"Backstage passes to a TAFKAL80ETC concert".equals(item.getName())) {
                         if (item.getQuality() > 0) {
                             if (!"Sulfuras, Hand of Ragnaros".equals(item.getName())) {
-                                item.setQuality(item.getQuality() - 1);
+                                item.setQuality(decreaseQuality(item));
                             }
                         }
                     }
@@ -61,12 +59,20 @@ public class SampleGildedRose {
                 }
                 if ("Aged Brie".equals(item.getName())) {
                     if (item.getQuality() < 50) {
-                        item.setQuality(item.getQuality() + 1);
+                        item.setQuality(increaseQuality(item));
                     }
                 }
             }
         }
         return inventory;
+    }
+
+    private int decreaseQuality(SampleItem item) {
+        return item.getQuality() - 1;
+    }
+
+    private int increaseQuality(SampleItem item) {
+        return item.getQuality() + 1;
     }
 
     private List<String> stableQualityItems() {

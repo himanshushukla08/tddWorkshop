@@ -26,11 +26,10 @@ public class SampleGildedRose {
                 if (item.getQuality() > 0) {
                     item.setQuality(item.getQuality() - 1);
                 }
-            }
-//            } else {
-//                if (item.getQuality() < 50) {
-//                    item.setQuality(item.getQuality() + 1);
-//
+            } else {
+                if (item.getQuality() < 50) {
+                    item.setQuality(item.getQuality() + 1);
+
 //                    if ("Backstage passes to a TAFKAL80ETC concert".equals(item.getName())) {
 //                        if (item.getSellIn() < 11) {
 //                            if (item.getQuality() < 50) {
@@ -44,9 +43,9 @@ public class SampleGildedRose {
 //                            }
 //                        }
 //                    }
-//                }
-//            }
-//
+                }
+            }
+
             if (!"Sulfuras, Hand of Ragnaros".equals(item.getName())) {
                 item.setSellIn(item.getSellIn() - 1);
             }
